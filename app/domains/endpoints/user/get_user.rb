@@ -1,8 +1,8 @@
 module Endpoints
   module User
-    class Get < BaseClient
+    class GetUser < BaseClient
       USER_ENDPOINT = "user/".freeze
-      USER_ID = ENV["TRACTIVE_USER_ID"]
+      USER_ID = ENV["TRACTIVE_USER_ID"].freeze
 
       Response = Struct.new(:success, :status, :body)
 
@@ -13,7 +13,7 @@ module Endpoints
           end
 
           Response.new(success: true, status: user_response.status, body: user_response.body)
-        rescue StandardError => e
+        rescue Faraday::Error => e
           Response.new(success: false, status: e.response[:status])
         end
 

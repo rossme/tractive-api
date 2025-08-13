@@ -2,7 +2,7 @@ class UserFetcherService
 
   Response = Struct.new(:success, :user, :error)
 
-  def initialize(user_id)
+  def initialize(user_id:)
     @user_id = user_id
   end
 
